@@ -8,7 +8,6 @@ const uploader = require('./src/tools/image_uploader');
 const cleanup = require('./src/tools/clean_uploaded');
 
 const app = express();
-const port = 4100;
 
 app.use(cors());
 
@@ -28,5 +27,8 @@ app.post('/image/compress', uploader, (req, res) => {
     res.json({ originalImage: req.file.path, compressedImage: fileCompressedPath });
 });
 
+// server listening
 // app.listen();
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
+app.listen(process.env.PORT || 8080, "0.0.0.0", () => {
+    console.log(`Server is running at port ${process.env.PORT || 8080}`);
+  });
